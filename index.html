@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tesla | Electric Vehicles | Innovation Hub</title>
+    <!-- Google Fonts + Simple Icons (Font Awesome CDN) for crisp social & UI icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            scroll-behavior: smooth;
+            line-height: 1.4;
+        }
+
+        /* Custom scrollbar - sleek */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e82127;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff3b30;
+        }
+
+        /* main container */
+        .page {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* header / navigation - Tesla minimalist dark */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            transition: 0.25s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #e82127;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: #e82127;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        /* Hero section (full screen immersive) */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            padding-bottom: 5rem;
+            background-blend-mode: overlay;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 1.5rem;
+            animation: fadeUp 0.9s ease-out;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #ccc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            margin: 1rem 0 2rem;
+            font-weight: 400;
+            color: #f0f0f0;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.25s all;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: #e82127;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(232,33,39,0.3);
+        }
+        .btn-primary:hover {
+            background: #c41c21;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(232,33,39,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid white;
+            color: white;
+            backdrop-filter: blur(4px);
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #e82127;
+            transform: translateY(-2px);
+        }
+
+        /* Section shared styles */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(120deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-sub {
+            text-align: center;
+            color: #bbb;
+            max-width: 700px;
+            margin: -1.5rem auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* vehicle grid */
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .vehicle-card {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            border-color: #e8212770;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+            background: rgba(25,25,25,0.9);
+        }
+        .vehicle-icon {
+            font-size: 3rem;
+            color: #e82127;
+            margin-bottom: 1rem;
+        }
+        .vehicle-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .vehicle-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        .vehicle-stats span i {
+            margin-right: 5px;
+            color: #e82127;
+        }
+        .learn-link {
+            margin-top: 1rem;
+            display: inline-block;
+            color: #e82127;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .learn-link i {
+            transition: transform 0.2s;
+        }
+        .learn-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* technology / innovation section */
+        .tech-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            background: #0a0a0a;
+            border-radius: 48px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .tech-text {
+            flex: 1;
+        }
+        .tech-text h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .tech-text p {
+            color: #ccc;
+            line-height: 1.6;
+            margin: 1rem 0 1.5rem;
+        }
+        .tech-feature {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            align-items: center;
+        }
+        .tech-feature i {
+            font-size: 2rem;
+            color: #e82127;
+        }
+        .tech-image {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .tech-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s;
+        }
+        .tech-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* sustainability / energy */
+        .sustainability {
+            background: linear-gradient(145deg, #050505, #111111);
+            border-radius: 48px;
+            padding: 3rem;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .stat-item {
+            flex: 1;
+            min-width: 160px;
+        }
+        .stat-number {
+            font-size: 2.7rem;
+            font-weight: 800;
+            color: #e82127;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .testimonial {
+            background: #0f0f0f;
+            border-radius: 24px;
+            padding: 2rem;
+            border-left: 4px solid #e82127;
+        }
+        .testimonial p {
+            font-style: italic;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+        .testimonial h4 {
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .stars {
+            color: #ffc107;
+            margin-bottom: 0.8rem;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: url('https://images.unsplash.com/photo-1536700503339-1e4bcd207d8a?q=80&w=2070&auto=format') center/cover fixed;
+            border-radius: 40px;
+            margin: 3rem auto;
+            position: relative;
+            padding: 5rem 2rem;
+            text-align: center;
+            isolation: isolate;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            border-radius: 40px;
+            z-index: -1;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .cta-section .btn-primary {
+            margin-top: 2rem;
+            font-size: 1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        /* footer */
+        footer {
+            background: #030303;
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid #222;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: #aaa;
+            font-size: 1.5rem;
+            margin-left: 1.2rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #e82127;
+        }
+        .copyright {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* responsiveness */
+        @media (max-width: 900px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 1px solid #222;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .tech-showcase {
+                flex-direction: column;
+            }
+            .stats-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 550px) {
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">TESLA<span> //</span> DRIVE</div>
+        <div class="menu-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#vehicles">Vehicles</a></li>
+            <li><a href="#innovation">Innovation</a></li>
+            <li><a href="#sustainability">Energy</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#cta">Order</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Accelerate the Future</h1>
+            <p>Electric. Intelligent. Unstoppable. Experience the next generation of mobility.</p>
+            <div class="btn-group">
+                <a href="#vehicles" class="btn btn-primary"><i class="fas fa-car"></i> Explore Models</a>
+                <a href="#cta" class="btn btn-outline"><i class="fas fa-bolt"></i> Schedule Test Drive</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section id="vehicles" class="section">
+        <h2 class="section-title">Our Fleet</h2>
+        <div class="section-sub">Cutting-edge performance, zero emissions. Choose your icon.</div>
+        <div class="vehicles-grid">
+            <div class="vehicle-card">
+                <div class="vehicle-icon"><i class="fas fa-car-side"></i></div>
+                <h3>Model S</h3>
+                <div class="vehicle-stats">
+                    <span><i class="fas fa-tachometer-alt"></i> 1.99s 0-60</span>
+                    <span><i class="fas fa-charging-station"></i> 396 mi range</span>
+                </div>
+                <p>Luxury sedan with Plaid powertrain, unmatched efficiency.</p>
+                <a href="#" class="learn-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="vehicle-card">
+                <div class="vehicle-icon"><i class="fas fa-truck"></i></div>
+                <h3>Cybertruck</h3>
+                <div class="vehicle-stats">
+                    <span><i class="fas fa-shield-alt"></i> Exoskeleton</span>
+                    <span><i class="fas fa-bolt"></i> 500+ mi</span>
+                </div>
+                <p>Bold, durable, and futuristic. Built for any terrain.</p>
+                <a href="#" class="learn-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="vehicle-card">
+                <div class="vehicle-icon"><i class="fas fa-charging-station"></i></div>
+                <h3>Model 3</h3>
+                <div class="vehicle-stats">
+                    <span><i class="fas fa-rocket"></i> 3.1s 0-60</span>
+                    <span><i class="fas fa-road"></i> 358 mi range</span>
+                </div>
+                <p>The most accessible Tesla, premium interior & autopilot.</p>
+                <a href="#" class="learn-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="vehicle-card">
+                <div class="vehicle-icon"><i class="fas fa-crown"></i></div>
+                <h3>Model X</h3>
+                <div class="vehicle-stats">
+                    <span><i class="fas fa-door-open"></i> Falcon Wings</span>
+                    <span><i class="fas fa-towing"></i> 5,000 lbs towing</span>
+                </div>
+                <p>SUV with intelligent air suspension & panoramic view.</p>
+                <a href="#" class="learn-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation / Technology section -->
+    <section id="innovation" class="section">
+        <div class="tech-showcase">
+            <div class="tech-text">
+                <h3>Autopilot & AI <span style="color:#e82127;">Innovation</span></h3>
+                <p>Every Tesla comes standard with advanced hardware capable of Full Self-Driving capability. Our neural networks process real-time data from 8 surround cameras, providing 360 degrees of visibility. Over-the-air updates continuously improve safety and convenience.</p>
+                <div class="tech-feature">
+                    <i class="fas fa-microchip"></i>
+                    <div><strong>Full Self-Driving Computer</strong><br>Ultra powerful inference engine.</div>
+                </div>
+                <div class="tech-feature">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div><strong>Navigate on Autopilot</strong><br>Active guidance from on-ramp to off-ramp.</div>
+                </div>
+            </div>
+            <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1617704548623-3403765644e6?q=80&w=2070&auto=format" alt="Tesla interior AI display">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability & Energy Section -->
+    <section id="sustainability" class="section sustainability">
+        <h2 class="section-title" style="background: linear-gradient(120deg,#fff,#aaa); -webkit-background-clip:text;">Sustainable Energy Ecosystem</h2>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Trees Saved (CO₂ offset)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4B+</div>
+                <div class="stat-label">Clean Miles Driven</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Renewable Grid Integration</div>
+            </div>
+        </div>
+        <p style="max-width:700px; margin:0 auto; color:#ccc;">Tesla Solar Roof & Powerwall store clean energy, making homes self-sufficient. Charge your vehicle with the sun and drive emissions-free.</p>
+        <div style="margin-top: 2rem;">
+            <a href="#" class="btn btn-outline" style="border-color:#e82127; color:#e82127;">Discover Energy Products <i class="fas fa-solar-panel"></i></a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+        <h2 class="section-title">Owner Experiences</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"The acceleration is surreal and the autopilot makes highway driving effortless. Best decision I ever made!"</p>
+                <h4>- Elena Rodriguez</h4>
+            </div>
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"From the minimalist design to instant torque — Tesla redefines what a car should be. Supercharging network is top tier."</p>
+                <h4>- Marcus Chen</h4>
+            </div>
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <p>"Cybertruck's durability and futuristic look turns heads. Plus, the over-the-air updates keep surprising me."</p>
+                <h4>- Sophie Kim</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Order -->
+    <section id="cta" class="section cta-section">
+        <h2>Ready to Drive Electric?</h2>
+        <p style="margin-top: 0.8rem; font-size: 1.1rem;">Order your Tesla today and get up to $7,500 EV tax credit + free supercharging miles.</p>
+        <a href="#" class="btn btn-primary"><i class="fas fa-credit-card"></i> Custom Order & Drive</a>
+        <div style="margin-top: 1.5rem; font-size: 0.8rem;"><i class="fas fa-map-pin"></i> Find a Tesla Store near you</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="font-size: 1.4rem;">TESLA<span> //</span> <span style="font-weight:300;">future driven</span></div>
+            <div class="copyright">© 2025 Tesla, Inc. All rights reserved. Innovation for tomorrow.</div>
+            <div class="social-links">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Simple mobile menu toggle script -->
+<script>
+    (function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function(e) {
+                navLinks.classList.toggle('active');
+                // optional icon change
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // close mobile menu on any nav link click
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId === "") return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // dynamic navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                navbar.style.backdropFilter = 'blur(16px)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                navbar.style.backdropFilter = 'blur(12px)';
+            }
+        });
+    })();
+</script>
+</body>
+</html>

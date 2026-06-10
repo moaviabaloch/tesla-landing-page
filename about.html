@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Tesla | About Us - Mission, Innovation & Future</title>
+    <!-- Google Fonts + Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e82127;
+            border-radius: 8px;
+        }
+
+        /* navigation - same sleek style */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            transition: 0.25s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #e82127;
+            background: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #e82127;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        /* hero about section */
+        .about-hero {
+            height: 75vh;
+            min-height: 550px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1617704548623-3403765644e6?q=80&w=2070&auto=format') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-top: 0;
+        }
+        .hero-about-content {
+            max-width: 850px;
+            padding: 0 1.5rem;
+            animation: fadeUp 0.9s ease;
+        }
+        .hero-about-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .hero-about-content p {
+            font-size: 1.25rem;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* section containers */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(120deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-subhead {
+            text-align: center;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            font-size: 1.1rem;
+        }
+
+        /* mission block */
+        .mission-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            background: #0a0a0a;
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin-top: 1rem;
+        }
+        .mission-text {
+            flex: 1.2;
+        }
+        .mission-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #e82127;
+        }
+        .mission-text p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .mission-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .stat-circle {
+            background: #1a1a1a;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            border-left: 3px solid #e82127;
+        }
+        .stat-circle strong {
+            font-size: 1.4rem;
+            color: white;
+        }
+        .mission-image {
+            flex: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -12px black;
+        }
+        .mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: 0.3s;
+        }
+        .mission-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* timeline / history grid */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .timeline-card {
+            background: rgba(20,20,20,0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+        .timeline-card:hover {
+            border-color: #e8212760;
+            transform: translateY(-5px);
+        }
+        .year {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #e82127;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .timeline-card p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* core values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .value-item {
+            text-align: center;
+            background: #0d0d0d;
+            padding: 2rem 1.5rem;
+            border-radius: 32px;
+            transition: 0.2s;
+        }
+        .value-item i {
+            font-size: 2.8rem;
+            color: #e82127;
+            margin-bottom: 1rem;
+        }
+        .value-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .value-item p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* leadership team simple */
+        .leadership {
+            background: linear-gradient(145deg, #070707, #121212);
+            border-radius: 48px;
+            padding: 2rem 2rem 3rem;
+            margin-top: 2rem;
+        }
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .team-card {
+            background: #111;
+            border-radius: 30px;
+            padding: 1.8rem;
+            text-align: center;
+            width: 220px;
+            transition: 0.2s;
+            border: 1px solid #222;
+        }
+        .team-card:hover {
+            border-color: #e82127;
+        }
+        .avatar {
+            font-size: 3.5rem;
+            background: #1e1e1e;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            color: #e82127;
+        }
+        .team-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .team-card p {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        /* global footprint */
+        .global-section {
+            background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2071&auto=format') center/cover fixed;
+            border-radius: 48px;
+            position: relative;
+            padding: 4rem 2rem;
+            margin: 2rem auto;
+            text-align: center;
+            isolation: isolate;
+        }
+        .global-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            border-radius: 48px;
+            z-index: -1;
+        }
+        .global-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .global-stat {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            min-width: 160px;
+        }
+        .global-stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e82127;
+        }
+
+        /* cta */
+        .cta-mini {
+            background: #0a0a0a;
+            border-radius: 40px;
+            text-align: center;
+            padding: 3rem;
+            margin: 1rem auto 3rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            background: #e82127;
+            color: white;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: #c41c21;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(232,33,39,0.3);
+        }
+
+        /* footer */
+        footer {
+            background: #030303;
+            padding: 2.5rem 2rem;
+            border-top: 1px solid #1f1f1f;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .socials a {
+            color: #aaa;
+            font-size: 1.4rem;
+            margin-left: 1rem;
+            transition: color 0.2s;
+        }
+        .socials a:hover {
+            color: #e82127;
+        }
+        .copyright {
+            font-size: 0.75rem;
+            color: #555;
+        }
+
+        @media (max-width: 800px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.95);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .hero-about-content h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .mission-block {
+                flex-direction: column;
+            }
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 550px) {
+            .section {
+                padding: 3rem 1rem;
+            }
+            .hero-about-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="logo">TESLA<span> //</span> ABOUT</div>
+        <div class="menu-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active">About</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">History</a></li>
+            <li><a href="#">Values</a></li>
+            <li><a href="#">Global</a></li>
+            <li><a href="#">Connect</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero About Section -->
+        <section class="about-hero">
+            <div class="hero-about-content">
+                <h1>Driving the <span style="color:#e82127;">Energy Revolution</span></h1>
+                <p>More than an automaker — we are an energy & innovation company committed to accelerating the world’s transition to sustainable energy.</p>
+            </div>
+        </section>
+
+        <!-- Mission + Core Story -->
+        <div class="section">
+            <div class="mission-block">
+                <div class="mission-text">
+                    <h2>Our mission: <span style="color:#e82127;">Accelerate sustainable transport & energy</span></h2>
+                    <p>Tesla was founded in 2003 by a group of engineers who believed electric vehicles could be better, quicker, and more desirable than gasoline cars. Today, Tesla builds not only all-electric vehicles but also infinitely scalable clean energy generation and storage products. From Gigafactories to solar roofs, we are redefining what’s possible.</p>
+                    <div class="mission-stats">
+                        <div class="stat-circle"><strong>6M+</strong> <span style="font-size:0.8rem;">vehicles saved CO₂</span></div>
+                        <div class="stat-circle"><strong>100%</strong> <span style="font-size:0.8rem;">renewable factories</span></div>
+                        <div class="stat-circle"><strong>1.2M</strong> <span style="font-size:0.8rem;">Powerwall units</span></div>
+                    </div>
+                </div>
+                <div class="mission-image">
+                    <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2071&auto=format" alt="Tesla Gigafactory">
+                </div>
+            </div>
+        </div>
+
+        <!-- History Timeline -->
+        <div class="section">
+            <h2 class="section-title">Milestones of Innovation</h2>
+            <div class="section-subhead">From Roadster to Cybertruck — redefining the automotive world.</div>
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="year">2008</div>
+                    <h4>Roadster Launch</h4>
+                    <p>First highway-legal EV to use lithium-ion cells, 245 miles per charge — disrupted the industry.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="year">2012</div>
+                    <h4>Model S</h4>
+                    <p>Redefined the sedan with dual motor & Autopilot hardware, world’s best range.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="year">2015</div>
+                    <h4>Powerwall & Solar</h4>
+                    <p>Introduced home battery storage, empowering clean energy independence.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="year">2020</div>
+                    <h4>Cybertruck Reveal</h4>
+                    <p>Exoskeleton, stainless steel, futuristic design — reimagining utility vehicles.</p>
+                </div>
+                <div class="timeline-card">
+                    <div class="year">2023+</div>
+                    <h4>Gigafactories Global</h4>
+                    <p>Production in Texas, Berlin, Shanghai — millions of EVs annually.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="section">
+            <h2 class="section-title">Core Principles</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability</h3>
+                    <p>Every decision reduces carbon footprint — from supply chain to final product.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Radical Innovation</h3>
+                    <p>Vertical integration, AI, and over-the-air updates push boundaries daily.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Global Scale</h3>
+                    <p>Manufacturing on three continents to make sustainable transport accessible.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Safety First</h3>
+                    <p>5-star safety ratings across all models, advanced crash protection.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership & People -->
+        <div class="section leadership">
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Visionary Minds</h2>
+            <div class="section-subhead">The team pushing the boundaries of engineering and design</div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-user-astronaut"></i></div>
+                    <h4>Elon Musk</h4>
+                    <p>CEO & Product Architect</p>
+                </div>
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-cogs"></i></div>
+                    <h4>Franz von Holzhausen</h4>
+                    <p>Chief Designer</p>
+                </div>
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-bolt"></i></div>
+                    <h4>Drew Baglino</h4>
+                    <p>SVP Powertrain & Energy</p>
+                </div>
+                <div class="team-card">
+                    <div class="avatar"><i class="fas fa-chart-line"></i></div>
+                    <h4>Vaibhav Taneja</h4>
+                    <p>CFO</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global footprint -->
+        <div class="section global-section">
+            <h2 style="font-size: 2rem; font-weight:700;">Global Presence</h2>
+            <p style="max-width: 600px; margin: 0.5rem auto;">Gigafactories, service centers, and superchargers spanning 6 continents.</p>
+            <div class="global-stats">
+                <div class="global-stat"><div class="number">6</div><div>Gigafactories</div></div>
+                <div class="global-stat"><div class="number">45k+</div><div>Superchargers</div></div>
+                <div class="global-stat"><div class="number">100+</div><div>Countries</div></div>
+                <div class="global-stat"><div class="number">120k+</div><div>Employees</div></div>
+            </div>
+        </div>
+
+        <!-- Join the movement CTA -->
+        <div class="section cta-mini">
+            <h3 style="font-size: 1.8rem;">Join the sustainable revolution</h3>
+            <p style="margin: 0.8rem 0;">Explore careers, investor relations, or start your electric journey with us.</p>
+            <a href="#" class="btn"><i class="fas fa-bolt"></i> Discover Opportunities</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="logo" style="font-size: 1.3rem;">TESLA <span style="color:#e82127;">//</span> ENERGY & INNOVATION</div>
+            <div class="copyright">© 2025 Tesla About Page — Designed for the future of mobility.</div>
+            <div class="socials">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // close nav on link click (mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) icon.classList.remove('fa-times');
+                    if (icon) icon.classList.add('fa-bars');
+                }
+                // optional smooth scroll for internal anchors 
+                const href = link.getAttribute('href');
+                if (href && href !== "#" && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // navbar background change on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.style.backgroundColor = 'rgba(0,0,0,0.92)';
+                navbar.style.backdropFilter = 'blur(16px)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(0,0,0,0.75)';
+                navbar.style.backdropFilter = 'blur(12px)';
+            }
+        });
+
+        // simple smooth scroll for any internal hash links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const hash = this.getAttribute('href');
+                if (hash === "#" || hash === "") return;
+                const element = document.querySelector(hash);
+                if (element) {
+                    e.preventDefault();
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
